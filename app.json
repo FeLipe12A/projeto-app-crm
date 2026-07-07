@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "App-CRM",
-    "slug": "App-CRM",
+    "slug": "felipe",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,9 +9,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "bundleIdentifier": "com.appcrm.ios",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.appcrm.android",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -38,11 +40,24 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.1039806310738-8iubnljrt9r3piff967ephhrmbjbuq8d"
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0a69c363-3a1e-40d0-8f80-396a6020325b"
+      }
+    },
+    "owner": "felipeign10s-team"
   }
 }

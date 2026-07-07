@@ -46,3 +46,7 @@ app-example
 .claude/
 AGENTS.md
 CLAUDE.md
+
+FirebaseConfig.ts
+
+google-services.json
