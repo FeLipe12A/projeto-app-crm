@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-export default function NovoOrcamento() {
+export default function NovoCliente() {
   return (
     <View
       style={{
@@ -9,7 +9,7 @@ export default function NovoOrcamento() {
         alignItems: "center",
       }}
     >
-      <Text>Essa é a tela de Novo Orçamento</Text>
+      <Text>Essa é a tela de Novo Cliente</Text>
     </View>
   );
 }
