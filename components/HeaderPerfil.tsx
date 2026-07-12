@@ -1,4 +1,4 @@
-import { Feather } from '@expo/vector-icons'; // Usando Feather para o sino com contorno limpo
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     height: 45,
   },
   textContainer: {
-    marginLeft: 12, // Espaço entre a foto e o texto
+    marginLeft: 12, 
   },
   saudacao: {
     fontSize: 20,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   cargo: {
     fontSize: 12,
-    color: '#555555', // Cinza escuro para contraste
+    color: '#55433B', 
     marginTop: 2,
   },
   botaoNotificacao: {

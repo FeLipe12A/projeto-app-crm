@@ -1,4 +1,4 @@
-import { Feather } from '@expo/vector-icons';
+import { Feather, Foundation } from '@expo/vector-icons';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { PlatformPressable } from '@react-navigation/elements';
 import { useLinkBuilder } from '@react-navigation/native';
@@ -7,7 +7,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const { buildHref } = useLinkBuilder();
   const icon = {
-    home: (props: any) => (<Feather name="home" size={24} {...props} />),
+    home: (props: any) => (<Foundation name="home" size={24} {...props} />),
     clientes: (props: any) => (<Feather name="users" size={24} {...props} />),
     orcamentos: (props: any) => (<Feather name="file-text" size={24} {...props} />),
     perfil: (props: any) => (<Feather name="user" size={24} {...props} />),
