@@ -1,40 +1,104 @@
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import React, { useState } from 'react';
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Switch,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import { getAuth } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, Image, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { db } from '../../FirebaseConfig';
 
 const perfilImage = require('../../assets/images/perfil.png');
 
 export default function Perfil() {
-  const [email, setEmail] = useState('camila.rocha@arquitetura.com');
-  const [telefone, setTelefone] = useState('(35) 98765-4321');
-  const [endereco, setEndereco] = useState('Av. da Moda, 1000 - Passos, MG');
+  const [nome, setNome] = useState('');
+  const [cargo, setCargo] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [carregando, setCarregando] = useState(true);
   
   const [alertasWhatsapp, setAlertasWhatsapp] = useState(true);
   const [mostrarContato, setMostrarContato] = useState(true);
 
-  const handleSairConta = () => {
-    // router.replace apaga o histórico, impedindo que o usuário volte com a seta do celular
-    router.replace('/');
+  const auth = getAuth();
+  const usuarioLogado = auth.currentUser;
+
+  useEffect(() => {
+    async function carregarDadosUsuario() {
+      if (!usuarioLogado) return; // Se não tiver ninguém logado, não faz nada
+
+      try {
+        const docRef = doc(db, 'Usuarios', usuarioLogado.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const dados = docSnap.data();
+          setNome(dados.nome || usuarioLogado.displayName || '');
+          setCargo(dados.cargo || 'Cargo não definido');
+          setEmail(dados.email || usuarioLogado.email); 
+          setTelefone(dados.telefone || '');
+          setEndereco(dados.endereco || '');
+        } else {
+          // Se for o primeiro login da pessoa e o doc não existir ainda, apenas mostra o email do Auth
+          setNome(usuarioLogado.displayName || '');
+          setCargo('Cargo não definido');
+          setEmail(usuarioLogado.email || '');
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      } finally {
+        setCarregando(false);
+      }
+    }
+
+    carregarDadosUsuario();
+  }, [usuarioLogado]);
+
+  const handleSalvar = async () => {
+    if (!usuarioLogado) return;
+
+    try {
+      setCarregando(true);
+      const docRef = doc(db, 'Usuarios', usuarioLogado.uid);
+
+      // setDoc com { merge: true } atualiza os dados se o documento existir, 
+      // ou cria um documento novo caso seja o primeiro acesso da pessoa.
+      await setDoc(docRef, {
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        endereco: endereco,
+        atualizadoEm: new Date()
+      }, { merge: true });
+
+      Alert.alert('Sucesso', 'Seus dados foram atualizados!');
+    } catch (error) {
+      console.error("Erro ao salvar dados:", error);
+      Alert.alert('Erro', 'Não foi possível salvar as alterações.');
+    } finally {
+      setCarregando(false);
+    }
   };
+
+  const handleSairConta = async () => {
+    try {
+      await auth.signOut();
+      router.replace('/');
+    } catch (error) {
+      Alert.alert('Erro', "Não foi possível sair da conta.");
+    }
+  };
+
+  if (carregando) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator size="large" color="#B35D33" />
+      </View>
+    );
+  }
 
   const handleSobreApp = () => {
     router.push('/sobre');
-  };
-
-  const handleSalvar = () => {
-    console.log("Dados salvos:", { email, telefone, endereco });
-    // Aqui no futuro entrará a lógica para salvar no banco (Firebase)
   };
 
   return (
@@ -48,13 +112,20 @@ export default function Perfil() {
               style={styles.avatarImage} 
             />
           </View>
-          <Text style={styles.nomeUsuario}>Camila Rocha</Text>
-          <Text style={styles.cargoUsuario}>Arquiteta Parceira</Text>
+          <Text style={styles.nomeUsuario}>{nome || 'Novo Usuário'}</Text>
+          <Text style={styles.cargoUsuario}>{cargo}</Text>
         </View>
 
         <Text style={styles.sectionTitle}>MEUS DADOS</Text>
         <View style={styles.card}>
-          
+          <Text style={styles.label}>Nome</Text>
+          <TextInput 
+            style={styles.input} 
+            value={nome}
+            onChangeText={setNome}
+            placeholder="Seu nome completo"
+          />
+
           <Text style={styles.label}>E-mail</Text>
           <TextInput 
             style={styles.input} 
@@ -186,7 +257,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    color: '#888888',
+    color: '#55433B',
     marginBottom: 6,
     fontWeight: '500',
   },
@@ -208,7 +279,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   textoBotaoSalvar: {
-    color: '#FFFFFF',
+    color: '#FFFCFF',
     fontWeight: 'bold',
     fontSize: 16,
   },
