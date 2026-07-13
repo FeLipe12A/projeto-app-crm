@@ -155,7 +155,10 @@ export default function ClientesScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#FAFAFA' },
+  safeArea: { 
+    flex: 1, 
+    backgroundColor: '#FAFAFA' 
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -164,7 +167,11 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     position: 'relative',
   },
-  tituloHeader: { fontSize: 20, fontWeight: 'bold', color: '#333' },
+  tituloHeader: { 
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    color: '#333' 
+  },
   botaoAdd: {
     position: 'absolute',
     right: 24,
@@ -175,7 +182,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  content: { flex: 1 },
+  content: { 
+    flex: 1 
+  },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -187,8 +196,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     marginBottom: 16,
   },
-  searchIcon: { marginRight: 12 },
-  searchInput: { flex: 1, paddingVertical: 14, fontSize: 15, color: '#333' },
+  searchIcon: { 
+    marginRight: 12 
+  },
+  searchInput: { 
+    flex: 1, 
+    paddingVertical: 14, 
+    fontSize: 15, 
+    color: '#333' 
+  },
   chipsWrapper: {
     marginBottom: 16,
   },
