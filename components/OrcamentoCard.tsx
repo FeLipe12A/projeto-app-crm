@@ -5,6 +5,7 @@ import { Swipeable } from 'react-native-gesture-handler';
 
 export interface Orcamento {
   id: string;
+  nomeOrcamento: string,
   clienteNome: string;
   descricao: string;
   valorTotal: number;
@@ -81,7 +82,7 @@ const OrcamentoCard = ({ item, handleAlterarStatus, formatarMoeda, formatarData 
                 </View>
 
                 <Text style={styles.data}>{formatarData(item.criadoEm)}</Text>
-                <Text style={styles.tituloProjeto} numberOfLines={1}>{item.descricao}</Text>
+                <Text style={styles.tituloProjeto} numberOfLines={1}>{item.nomeOrcamento || item.descricao}</Text>
 
                 <View style={styles.cardBase}>
                     <Text style={styles.labelValor}>Valor Total</Text>

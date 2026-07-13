@@ -12,6 +12,7 @@ interface Cliente {
 
 export default function NovoOrcamento() {
   const [descricao, setDescricao] = useState('');
+  const [nomeOrcamento, setNomeOrcamento] = useState('');
   const [material, setMaterial] = useState('');
   const [ferragens, setFerragens] = useState('');
   const [valor, setValor] = useState('');
@@ -43,13 +44,14 @@ export default function NovoOrcamento() {
 
   const handleSalvar = async () => {
     if (!clienteSelecionado) return Alert.alert('Atenção', 'Selecione um cliente.');
-    if (!descricao || !valor) return Alert.alert('Atenção', 'Preencha a descrição e o valor.');
+    if (!nomeOrcamento || !descricao || !valor) return Alert.alert('Atenção', 'Preencha o nome do Orçamento, a descrição e o valor.');
 
     try {
       setSalvando(true);
 
       const valorNumerico = parseFloat(valor.replace(',', '.'));
       await addDoc(collection(db, 'Orcamentos'), {
+        nomeOrcamento,
         clienteId: clienteSelecionado.id,
         clienteNome: clienteSelecionado.nome,
         descricao,
@@ -91,6 +93,15 @@ export default function NovoOrcamento() {
         </TouchableOpacity>
         <Text style={styles.helperText}>Ex: Fernanda Costa</Text>
 
+        <Text style={styles.sectionTitle}>Nome do Orçamento</Text>
+        <TextInput 
+          style={styles.inputBox} 
+          placeholder="Ex: Cozinha Planejada ou Orçamento Camila" 
+          placeholderTextColor="#D4B8A9"
+          value={nomeOrcamento} 
+          onChangeText={setNomeOrcamento}
+        />
+        
         <Text style={styles.sectionTitle}>Descrição do Projeto</Text>
         <TextInput
           style={[styles.inputBox, styles.textArea]}
@@ -143,7 +154,6 @@ export default function NovoOrcamento() {
         </TouchableOpacity>
       </View>
 
-      {/* Modal de Clientes */}
       <Modal visible={modalVisivel} transparent animationType="slide">
         <View style={styles.modalFundo}>
           <View style={styles.modalConteudo}>

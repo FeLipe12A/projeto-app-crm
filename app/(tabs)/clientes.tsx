@@ -57,12 +57,11 @@ export default function ClientesScreen() {
       return bateComPesquisa && qtdProjetos > 0;
     }
     if (filtroAtivo === 'Inadimplentes') {
-      return bateComPesquisa && cliente.inadimplente === true; // Exemplo de lógica futura
+      return bateComPesquisa && cliente.inadimplente === true;
     }
     return bateComPesquisa; 
   });
 
-  // Renderiza cada cartão de cliente
   const renderCliente = ({ item, index }: { item: Cliente, index: number }) => {
     const qtdProjetos = item.projetosAtivos || 0;
     const corFundoAvatar = coresAvatar[index % coresAvatar.length];
