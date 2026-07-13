@@ -3,17 +3,9 @@ import { Image } from "expo-image";
 import { router } from "expo-router";
 import { GoogleAuthProvider, signInWithCredential, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { auth } from "../FirebaseConfig";
+import { auth } from "../../FirebaseConfig";
 
 GoogleSignin.configure({
   iosClientId: "1039806310738-8iubnljrt9r3piff967ephhrmbjbuq8d.apps.googleusercontent.com",
@@ -21,9 +13,9 @@ GoogleSignin.configure({
   offlineAccess: true,
 });
 
-const logoIcon = require("../assets/images/logoIcon.png");
-const eyeIcon = require("../assets/images/eyeIcon.png");
-const googleIcon = require("../assets/images/googleIcon.png");
+const logoIcon = require("../../assets/images/logoIcon.png");
+const eyeIcon = require("../../assets/images/eyeIcon.png");
+const googleIcon = require("../../assets/images/googleIcon.png");
 
 export default function Index() {
   const [email, setEmail] = useState("");

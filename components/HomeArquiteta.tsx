@@ -68,7 +68,6 @@ export default function HomeArquiteta({ projetosAtivos }: Props) {
         </Text>
       ) : (
         projetosAtivos.map((projeto) => {
-          // Valores padrão (fallback) até criarmos as funções de atualizar o progresso
           const progresso = projeto.progresso || 15;
           const etapa = projeto.etapa || 'Em Separação';
           const materialBase = projeto.material || 'MDF Padrão';
@@ -77,7 +76,7 @@ export default function HomeArquiteta({ projetosAtivos }: Props) {
           return (
             <View key={projeto.id} style={styles.cardFabrica}>
               <View style={styles.fabricaTopo}>
-                <Text style={styles.fabricaTitulo} numberOfLines={1}>{projeto.nomeOrcamento ||projeto.descricao}</Text>
+                <Text style={styles.fabricaTitulo} numberOfLines={1}>{projeto.nomeOrcamento || projeto.descricao}</Text>
                 <View style={styles.badgeMaterial}>
                   <Text style={styles.badgeMaterialText}>{materialBase}</Text>
                 </View>
@@ -89,7 +88,6 @@ export default function HomeArquiteta({ projetosAtivos }: Props) {
                 <Text style={styles.progressoData}>Estimativa: {dataEstimada}</Text>
               </View>
               
-              {/* A barra animada agora recebe o valor dinâmico! */}
               <BarraProgressoAnimada porcentagem={progresso} />
 
               <View style={styles.fabricaFooter}>
