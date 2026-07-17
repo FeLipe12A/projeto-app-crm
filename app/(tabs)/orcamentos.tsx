@@ -1,4 +1,3 @@
-import { db } from '@/FirebaseConfig';
 import { router } from 'expo-router';
 import { collection, doc, onSnapshot, orderBy, query, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
@@ -7,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import HeaderAcao from '../../components/HeaderAcao';
 import OrcamentoCard, { Orcamento } from '../../components/OrcamentoCard';
+import { db } from '../../FirebaseConfig';
 
 export default function Orcamentos() {
   const [filtroAtivo, setFiltroAtivo] = useState('Todos');

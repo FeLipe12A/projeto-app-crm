@@ -1,4 +1,3 @@
-import { db } from '@/FirebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { collection, doc, getDoc, onSnapshot, orderBy, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
@@ -7,6 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import HeaderPerfil from '../../components/HeaderPerfil';
 import HomeArquiteta from '../../components/HomeArquiteta';
 import HomeProjetista from '../../components/HomeProjetista';
+import { db } from '../../FirebaseConfig';
 
 export default function Home() {
   const [nomeUsuario, setNomeUsuario] = useState('');

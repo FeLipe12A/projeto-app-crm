@@ -1,9 +1,9 @@
-import { db } from "@/FirebaseConfig";
 import { router } from 'expo-router';
 import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from 'react';
 import { ActivityIndicator, Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { db } from "../FirebaseConfig";
 
 export default function NovoCliente() {
   const [nome, setNome] = useState('');

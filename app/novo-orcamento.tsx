@@ -1,9 +1,9 @@
-import { db } from '@/FirebaseConfig';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { addDoc, collection, doc, getDocs, increment, orderBy, query, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, Modal, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { db } from '../FirebaseConfig';
 
 interface Cliente {
   id: string;
