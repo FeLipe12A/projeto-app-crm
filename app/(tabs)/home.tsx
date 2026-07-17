@@ -1,9 +1,9 @@
+import { db } from '@/FirebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { collection, doc, getDoc, onSnapshot, orderBy, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { db } from '../../FirebaseConfig';
 import HeaderPerfil from '../../components/HeaderPerfil';
 import HomeArquiteta from '../../components/HomeArquiteta';
 import HomeProjetista from '../../components/HomeProjetista';

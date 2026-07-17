@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "App-CRM",
-    "slug": "felipe",
+    "slug": "app-crm",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -55,9 +55,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "0a69c363-3a1e-40d0-8f80-396a6020325b"
+        "projectId": "7aba44b3-9328-4387-b2c9-898f65ebbcf4"
       }
     },
-    "owner": "felipeign10s-team"
+    "owner": "felipeigns-team"
   }
 }

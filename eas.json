@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": "~20.5.1",
+    "version": "~21.0.1",
     "appVersionSource": "remote"
   },
   "build": {
@@ -9,10 +9,20 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "node": "20.12.0",
+      "env": {
+        "EAS_BUILD_NPM_COMMAND": "install"
+      },
+      "android": {
+        "buildType": "apk"
+      }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
+      }
     }
   },
   "submit": {

@@ -1,10 +1,10 @@
+import { db } from '@/FirebaseConfig';
 import { router } from 'expo-router';
 import { collection, doc, onSnapshot, orderBy, query, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { db } from '../../FirebaseConfig';
 import HeaderAcao from '../../components/HeaderAcao';
 import OrcamentoCard, { Orcamento } from '../../components/OrcamentoCard';
 
@@ -38,6 +38,7 @@ export default function Orcamentos() {
   const orcamentosFiltrados = orcamentos.filter(orc => {
     if (filtroAtivo === 'Pendentes') return orc.status === 'Pendente';
     if (filtroAtivo === 'Aprovados') return orc.status === 'Aprovado';
+    if (filtroAtivo === 'Recusados') return orc.status === 'Recusado';
     return true; 
   });
 

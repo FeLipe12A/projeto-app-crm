@@ -1,10 +1,10 @@
+import { db } from '@/FirebaseConfig';
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { db } from '../../FirebaseConfig';
 import HeaderAcao from '../../components/HeaderAcao';
 
 interface Cliente {
